@@ -14,13 +14,23 @@ class Bank {
 
         class   Account;
         Account& operator[](int id);
-        void    createAccount(int initialDeposit);
+        int     createAccount(int initialDeposit = 0);
         void    deleteAccount(int id);
         void    deposit(int accountId, int amount);
         void    withdraw(int accountId, int amount);
         void    requestLoan(int accountId, int amount);
 
+        class AccountDoesNotExist: public std::exception {
+            const char *what() const throw();
+        };
 
+        class InsufficientBalance: public std::exception {
+            const char *what() const throw();
+        };
+
+        class InsufficientFunds: public std::exception {
+            const char *what() const throw();
+        };
 
     private:
         int liquidity;

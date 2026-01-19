@@ -27,7 +27,7 @@ Bank::Account& Bank::operator[](int id) {
     return (*clientAccounts[id]);
 }
 
-void Bank::createAccount(int initialDeposit = 0) {
+int Bank::createAccount(int initialDeposit) {
 
     Account *newAccount;
     try {
@@ -36,12 +36,13 @@ void Bank::createAccount(int initialDeposit = 0) {
 
     } catch (std::exception &e) {
         std::cout << "Account creation failed: " << e.what() << std::endl;
-        return ;
+        return  -1;
     }
 
     clientAccounts[nextId] = newAccount;
     std::cout << "Account successfully created with id " << nextId << std::endl;
     nextId++;
+    return (nextId - 1);
 
 }
 
@@ -74,3 +75,10 @@ void Bank::requestLoan(int accountId, int amount){
                 << ". New balance: " << clientAccounts[accountId]->balance << std::endl;
 }
 
+const char *Bank::AccountDoesNotExist::what() const throw() {
+    return ("Exception: The reauested account does not exist.");
+}
+
+const char *Bank::AccountDoesNotExist::what() const throw() {
+    return ("Exception: The reauested account does not exist.");
+}

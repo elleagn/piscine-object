@@ -1,6 +1,7 @@
 #pragma once
 
-#include <vector>
+#include <map>
+#include <iostream>
 
 class Bank {
 
@@ -12,30 +13,36 @@ class Bank {
 
 
         class   Account;
-        void    createAccount(unsigned int initialDeposit);
-        void    deposit(unsigned int accountId, unsigned int amount);
-        void    withdraw(unsigned int accountId, unsigned int amount);
-        void    requireLoan(unsigned int accountId, unsigned int amount);
-        void    repayLoan(unsigned int accountId, unsigned int amount);
+        Account& operator[](int id);
+        void    createAccount(int initialDeposit);
+        void    deleteAccount(int id);
+        void    deposit(int accountId, int amount);
+        void    withdraw(int accountId, int amount);
+        void    requestLoan(int accountId, int amount);
 
-        Account& operator[](unsigned int id);
+
 
     private:
         int liquidity;
-        std::vector<Account *> clientAccounts;
+        int nextId;
+        std::map<int, Account *> clientAccounts;
 
 };
 
 class Bank::Account {
+
+    friend class Bank;
 
     public:
 
         virtual ~Account();
 
     private:
+
         Account();
-        Account(const Account& Account);
+        Account(const Account& account);
         Account& operator=(const Account& account);
 
+        int balance;
 
 };

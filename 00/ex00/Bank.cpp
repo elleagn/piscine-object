@@ -17,7 +17,10 @@ Bank& Bank::operator=(const Bank& bank) {
 }
 
 Bank::~Bank() {
-
+    for (std::map<int, Account *>::iterator it = clientAccounts.begin();
+    it == clientAccounts.end(); it++) {
+        delete it->second;
+    }
 }
 
 Bank::Account& Bank::operator[](int id) {
@@ -65,5 +68,9 @@ void Bank::withdraw(int accountId, int amount) {
 }
 
 void Bank::requestLoan(int accountId, int amount){
-    
+    clientAccounts[accountId]->balance += amount;
+    liquidity -= amount;
+    std::cout   << "Bank loaned " << amount << " to account " << accountId
+                << ". New balance: " << clientAccounts[accountId]->balance << std::endl;
 }
+

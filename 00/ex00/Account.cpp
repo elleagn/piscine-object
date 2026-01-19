@@ -2,12 +2,12 @@
 
 Bank::Account::Account() {}
 
-Bank::Account::Account(const Account& account) {
-    (void)account;
+Bank::Account::Account(const Account& account): balance(account.balance){
+
 }
 
 Bank::Account& Bank::Account::operator=(const Account& account) {
-    (void)account;
+    balance = account.balance;
     return (*this);
 }
 

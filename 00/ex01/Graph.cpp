@@ -44,15 +44,16 @@ void Graph::plot() {
             std::cout << " ";
             if (nextPoint != points.end()
                 && (*nextPoint).Y == y && (*nextPoint).X == x) {
-                    std::cout << "+";
+                    std::cout << "*";
                     nextPoint++;
             } else {
-                std::cout << "-";
+                std::cout << ".";
             }
         }
         std::cout << std::endl;
     }
 
+    std::cout << " ";
     for (int x = 0; x <= size.X; x++) {
             std::cout << " " << x;
     }

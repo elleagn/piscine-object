@@ -11,6 +11,7 @@ class Graph {
 
             public:
                 Vector2(float x, float y);
+                Vector2(const Vector2& vect);
                 ~Vector2();
 
                 Vector2& operator=(const Vector2& vect);
@@ -29,7 +30,7 @@ class Graph {
         ~Graph();
 
         Graph& operator=(const Graph* graph);
-        void add(const Vector2& point);
+        void add(float x, float y);
         void plot();
 };
 

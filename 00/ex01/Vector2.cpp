@@ -30,12 +30,4 @@ bool Graph::Vector2::operator<(const Vector2& point) const {
 
 }
 
-float Graph::Vector2::getX() const {
-    return (X);
-}
-
-float Graph::Vector2::getY() const {
-    return (Y);
-}
-
 

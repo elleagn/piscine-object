@@ -11,7 +11,8 @@ class Bank {
         Bank& operator=(const Bank& bank);
         virtual ~Bank();
 
-        int getBalance() const;
+        int getLiquidity() const;
+        void printAccounts() const;
 
         class   Account;
         Account& operator[](int id);

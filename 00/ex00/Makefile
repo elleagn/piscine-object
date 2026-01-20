@@ -6,13 +6,13 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2026/01/19 12:29:46 by gozon            ###   ########.fr        #
+#    Updated: 2026/01/20 09:15:05 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = bank
 CC = clang++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 CPP =	main.cpp Bank.cpp Account.cpp
 OBJ_DIR = objects
 OBJ = $(CPP:%.cpp=$(OBJ_DIR)/%.o)

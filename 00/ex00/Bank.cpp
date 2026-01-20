@@ -18,8 +18,20 @@ Bank& Bank::operator=(const Bank& bank) {
 
 Bank::~Bank() {
     for (std::map<int, Account *>::iterator it = clientAccounts.begin();
-    it == clientAccounts.end(); it++) {
+    it != clientAccounts.end(); it++) {
         delete it->second;
+    }
+}
+
+int Bank::getLiquidity() const {
+    return(liquidity);
+}
+
+void Bank::printAccounts() const {\
+
+    for (std::map<int, Account *>::const_iterator it = clientAccounts.begin();
+        it != clientAccounts.end(); it++) {
+            std::cout << *(it->second);
     }
 }
 
@@ -59,8 +71,8 @@ void Bank::deposit(int accountId, int amount) {
         throw AccountDoesNotExist();
     }
     clientAccounts[accountId]->balance += (amount * 95) / 100;
-    liquidity = amount - (amount * 95) / 100;
-    std::cout   << "Deposit of " << amount << "in account " << accountId
+    liquidity += amount - ((amount * 95) / 100);
+    std::cout   << "Deposit of " << amount << " in account " << accountId
                 << " successful. New balance: "
                 << clientAccounts[accountId]->balance << std::endl;
 }
@@ -91,6 +103,13 @@ void Bank::requestLoan(int accountId, int amount){
     clientAccounts[accountId]->balance += amount;
     std::cout   << "Bank loaned " << amount << " to account " << accountId
                 << ". New balance: " << clientAccounts[accountId]->balance << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& out, const Bank& bank) {
+    out << "Bank informations : " << std::endl;
+    out << "Liquidity : " << bank.getLiquidity() << std::endl;
+	bank.printAccounts();
+	return (out);
 }
 
 const char *Bank::AccountDoesNotExist::what() const throw() {

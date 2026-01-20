@@ -22,5 +22,8 @@ const int& Bank::Account::getBalance() const {
 }
 
 std::ostream& operator<<(std::ostream& out, const Bank::Account& account) {
-    out << "[" << account.getId() << "] - [" << account.getBalance() << "]" << std::endl;
+    out << "[" << account.getId() << "] - [" << account.getBalance() << "]"
+        << std::endl;
+
+    return (out);
 }

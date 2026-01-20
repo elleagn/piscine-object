@@ -11,6 +11,7 @@ class Bank {
         Bank& operator=(const Bank& bank);
         virtual ~Bank();
 
+        int getBalance() const;
 
         class   Account;
         Account& operator[](int id);
@@ -46,6 +47,8 @@ class Bank::Account {
     public:
 
         virtual ~Account();
+        const int& getId() const;
+        const int& getBalance() const;
 
     private:
 
@@ -54,5 +57,9 @@ class Bank::Account {
         Account& operator=(const Account& account);
 
         int balance;
+        int id;
 
 };
+
+std::ostream& operator<<(std::ostream& out, const Bank::Account& account);
+std::ostream& operator<<(std::ostream& out, const Bank& bank);

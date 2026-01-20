@@ -24,20 +24,20 @@ Bank::~Bank() {
 }
 
 Bank::Account& Bank::operator[](int id) {
+    std::map<int, Account *>::iterator it = clientAccounts.find(id);
+    if (it == clientAccounts.end()) {
+        throw AccountDoesNotExist();
+    }
     return (*clientAccounts[id]);
 }
 
 int Bank::createAccount(int initialDeposit) {
 
     Account *newAccount;
-    try {
-        newAccount = new Account;
-        newAccount->balance = initialDeposit;
 
-    } catch (std::exception &e) {
-        std::cout << "Account creation failed: " << e.what() << std::endl;
-        return  -1;
-    }
+    newAccount = new Account;
+    newAccount->balance = initialDeposit;
+    newAccount->id = nextId;
 
     clientAccounts[nextId] = newAccount;
     std::cout << "Account successfully created with id " << nextId << std::endl;
@@ -54,6 +54,10 @@ void Bank::deleteAccount(int id) {
 }
 
 void Bank::deposit(int accountId, int amount) {
+    std::map<int, Account *>::iterator it = clientAccounts.find(accountId);
+    if (it == clientAccounts.end()) {
+        throw AccountDoesNotExist();
+    }
     clientAccounts[accountId]->balance += (amount * 95) / 100;
     liquidity = amount - (amount * 95) / 100;
     std::cout   << "Deposit of " << amount << "in account " << accountId
@@ -62,6 +66,13 @@ void Bank::deposit(int accountId, int amount) {
 }
 
 void Bank::withdraw(int accountId, int amount) {
+    std::map<int, Account *>::iterator it = clientAccounts.find(accountId);
+    if (it == clientAccounts.end()) {
+        throw AccountDoesNotExist();
+    }
+    if (clientAccounts[accountId]->balance < amount) {
+        throw InsufficientBalance();
+    }
     clientAccounts[accountId]->balance -= amount;
     std::cout   << "Withdrawal of " << amount << "from account " << accountId
                 << " successful. New balance "
@@ -69,16 +80,27 @@ void Bank::withdraw(int accountId, int amount) {
 }
 
 void Bank::requestLoan(int accountId, int amount){
-    clientAccounts[accountId]->balance += amount;
+    std::map<int, Account *>::iterator it = clientAccounts.find(accountId);
+    if (it == clientAccounts.end()) {
+        throw AccountDoesNotExist();
+    }
+    if (liquidity < amount) {
+        throw InsufficientFunds();
+    }
     liquidity -= amount;
+    clientAccounts[accountId]->balance += amount;
     std::cout   << "Bank loaned " << amount << " to account " << accountId
                 << ". New balance: " << clientAccounts[accountId]->balance << std::endl;
 }
 
 const char *Bank::AccountDoesNotExist::what() const throw() {
-    return ("Exception: The reauested account does not exist.");
+    return ("Exception: The requested account does not exist.");
 }
 
-const char *Bank::AccountDoesNotExist::what() const throw() {
-    return ("Exception: The reauested account does not exist.");
+const char *Bank::InsufficientBalance::what() const throw() {
+    return ("Exception: This account's balance is insufficient for this operation.");
+}
+
+const char *Bank::InsufficientFunds::what() const throw() {
+    return("Exception: The bank doesn't have the funds for this operation.");
 }

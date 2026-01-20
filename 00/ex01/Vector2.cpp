@@ -30,4 +30,10 @@ bool Graph::Vector2::operator<(const Vector2& point) const {
 
 }
 
+bool Graph::Vector2::operator==(const Vector2& point) const {
+    return (point.X == X && point.Y == Y);
+}
 
+bool Graph::Vector2::operator!=(const Vector2& point) const {
+    return (point.X != X || point.Y != Y);
+}

@@ -1,5 +1,14 @@
 #include "Graph.hpp"
 
+void wings() {
+    Graph graph;
+    graph.add(0, 4);
+    graph.add(0, 4);
+    graph.add(0, 4);
+    graph.add(0, 4);
+
+}
+
 int main(void) {
     Graph graph;
 
@@ -8,4 +17,5 @@ int main(void) {
     graph.add(4,2);
     graph.add(2,4);
     graph.plot();
+    graph.print();
 }

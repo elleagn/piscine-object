@@ -16,6 +16,8 @@ class Graph {
                 ~Vector2();
 
                 Vector2& operator=(const Vector2& vect);
+                bool operator==(const Vector2& vect) const;
+                bool operator!=(const Vector2& vect) const;
                 bool operator<(const Vector2& point) const;
 
         };
@@ -30,5 +32,6 @@ class Graph {
         Graph& operator=(const Graph& graph);
         void add(float x, float y);
         void plot();
+        void print();
 };
 

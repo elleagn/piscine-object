@@ -19,18 +19,20 @@ void Graph::add(float x, float y) {
     if (x < 0 || y < 0) {
         return ;
     }
-    for (std::vector<Vector2>::iterator it; it != points.end(); it++) {
-        if (point < *it) {
-            points.insert(it, point);
-            break;
-        }
+    std::vector<Vector2>::iterator it = points.begin();
+    while (it != points.end() && *it < point) {
+        it++;
     }
 
-    if (point.X > size.X) {
-        size.X = point.X;
-    }
-    if (point.Y > size.Y) {
-        size.Y = point.Y;
+    if (it == points.end() || *it != point) {
+        points.insert(it, point);
+
+        if (point.X > size.X) {
+            size.X = point.X;
+        }
+        if (point.Y > size.Y) {
+            size.Y = point.Y;
+        }
     }
 }
 
@@ -40,8 +42,10 @@ void Graph::plot() {
         std::cout << y;
         for (int x = 0; x <= size.X; x++) {
             std::cout << " ";
-            if ((*nextPoint).Y == y && (*nextPoint).X == x) {
-                std::cout << "+";
+            if (nextPoint != points.end()
+                && (*nextPoint).Y == y && (*nextPoint).X == x) {
+                    std::cout << "+";
+                    nextPoint++;
             } else {
                 std::cout << "-";
             }
@@ -51,5 +55,15 @@ void Graph::plot() {
 
     for (int x = 0; x <= size.X; x++) {
             std::cout << " " << x;
-        }
+    }
+    std::cout << std::endl;
+}
+
+void Graph::print() {
+
+    for (std::vector<Vector2>::iterator it = points.begin(); it != points.end();
+        it++) {
+            std::cout << (*it).X << " " << (*it).Y;
+            std::cout << std::endl;
+    }
 }

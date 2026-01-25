@@ -6,6 +6,7 @@ class ATool {
 
     protected:
         int numberOfUses;
+        Worker *user;
 
     public:
         ATool();
@@ -13,5 +14,6 @@ class ATool {
         ATool& operator=(const ATool& src);
         virtual ~ATool();
 
+        void getAway();
         virtual void use() = 0;
 };

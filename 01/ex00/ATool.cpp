@@ -1,9 +1,10 @@
 #include "ATool.hpp"
 #include "Colors.hpp"
 #include <iostream>
+#include "Worker.hpp"
 
 ATool::ATool(): numberOfUses(0) {
-    std::cout << BLUE << "Tool has been created." << RESET << std::endl;
+    std::cout << BLUE << "Tool: Created." << RESET << std::endl;
 }
 
 ATool::ATool(const ATool& src): numberOfUses(src.numberOfUses) {}
@@ -14,5 +15,5 @@ ATool& ATool::operator=(const ATool& src) {
 }
 
 ATool::~ATool() {
-    std::cout << BLUE << "Tool has been destroyed." << RESET << std::endl;
+    std::cout << BLUE << "Tool: Destroyed." << RESET << std::endl;
 }

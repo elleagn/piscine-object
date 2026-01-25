@@ -2,6 +2,8 @@
 
 #include <string>
 
+class Shovel;
+
 struct Position
 {
     int x;
@@ -24,6 +26,7 @@ class Worker {
         Position coordonnee;
         Statistic stat;
         std::string name;
+        Shovel* shovel;
         Worker();
 
     public:
@@ -32,9 +35,11 @@ class Worker {
         ~Worker();
         Worker(const Worker& src);
         Worker& operator=(const Worker& src);
+        void takeShovel(Shovel* shovel);
+        void dropShovel();
 
-    void setCoordonnee(int x, int y);
-    void setStat(int level, int exp);
-    const Position& getCoordonnee() const;
-    const Statistic& getStatistic();
+        void setCoordonnee(int x, int y);
+        void setStat(int level, int exp);
+        const Position& getCoordonnee() const;
+        const Statistic& getStatistic();
 };

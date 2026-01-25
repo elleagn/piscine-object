@@ -5,21 +5,21 @@
 // POSITION
 
 Position::Position(): x(0), y(0) {
-    std::cout << RED << "Position was created." << RESET << std::endl;
+    std::cout << RED << "Position has been created." << RESET << std::endl;
 }
 
 Position::~Position() {
-    std::cout << RED << "Position was destroyed." << RESET << std::endl;
+    std::cout << RED << "Position has been destroyed." << RESET << std::endl;
 }
 
 // Statistic
 
 Statistic::Statistic(): level(0), exp(0) {
-    std::cout << GREEN << "Statistic was created." << RESET << std::endl;
+    std::cout << GREEN << "Statistic has been created." << RESET << std::endl;
 }
 
 Statistic::~Statistic() {
-    std::cout << GREEN << "Statistic was destroyed." << RESET << std::endl;
+    std::cout << GREEN << "Statistic has been destroyed." << RESET << std::endl;
 }
 
 
@@ -43,6 +43,6 @@ Worker& Worker::operator=(const Worker& src) {
 }
 
 Worker::~Worker() {
-    std::cout   << YELLOW << "Worker " << name << " has been created." << RESET
+    std::cout   << YELLOW << "Worker " << name << " has been destroyed." << RESET
                 << std::endl;
 }

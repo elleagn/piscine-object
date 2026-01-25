@@ -6,11 +6,11 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2026/01/25 08:59:51 by gozon            ###   ########.fr        #
+#    Updated: 2026/01/25 09:04:15 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = plot
+NAME = work
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 CPP =	main.cpp Worker.cpp

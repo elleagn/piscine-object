@@ -6,14 +6,14 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2026/01/20 13:24:05 by gozon            ###   ########.fr        #
+#    Updated: 2026/01/25 08:59:51 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = plot
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
-CPP =	main.cpp Graph.cpp Vector2.cpp
+CPP =	main.cpp Worker.cpp
 OBJ_DIR = objects
 OBJ = $(CPP:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:%.o=%.d)

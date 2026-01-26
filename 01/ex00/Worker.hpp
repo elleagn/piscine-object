@@ -1,8 +1,9 @@
 #pragma once
 
 #include <string>
+#include <vector>
 
-class Shovel;
+class ATool;
 
 struct Position
 {
@@ -26,7 +27,7 @@ class Worker {
         Position coordonnee;
         Statistic stat;
         std::string name;
-        Shovel* shovel;
+        std::vector<ATool*> tools;
         Worker();
 
     public:
@@ -35,11 +36,13 @@ class Worker {
         ~Worker();
         Worker(const Worker& src);
         Worker& operator=(const Worker& src);
-        void takeShovel(Shovel* shovel);
-        void dropShovel();
+        void takeTool(ATool* tool);
+        void dropTool(ATool* tool);
+        bool hasTool(ATool* tool) const;
 
         void setCoordonnee(int x, int y);
         void setStat(int level, int exp);
         const Position& getCoordonnee() const;
         const Statistic& getStatistic();
+        const std::string& getName() const;
 };

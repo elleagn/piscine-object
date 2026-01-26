@@ -1,7 +1,7 @@
 #include "Worker.hpp"
 #include "Colors.hpp"
 #include <iostream>
-#include "Shovel.hpp"
+#include "ATool.hpp"
 
 // POSITION
 
@@ -28,35 +28,64 @@ Statistic::~Statistic() {
 
 Worker::Worker() {}
 
-Worker::Worker(std::string name) : name(name), shovel(NULL) {
+Worker::Worker(std::string name) : name(name) {
     std::cout   << YELLOW << "Worker " << name << ": Created." << RESET
                 << std::endl;
 }
 
 Worker::Worker(const Worker& src): coordonnee(src.coordonnee), stat(src.stat),
-name(src.name), shovel(NULL) {};
+name(src.name) {};
 
 Worker& Worker::operator=(const Worker& src) {
     name = src.name;
     coordonnee = src.coordonnee;
     stat = src.stat;
-    shovel = NULL;
     return (*this);
 }
 
 Worker::~Worker() {
+    std::vector<ATool *>::iterator it = tools.begin();
+    while (it != tools.end()) {
+        (*it)->getAway();
+    }
     std::cout   << YELLOW << "Worker " << name << ": Destroyed." << RESET
                 << std::endl;
 }
 
-void Worker::takeShovel(Shovel*tool) {
-    shovel = tool;
-    std::cout   << YELLOW << "Worker " << name << ": Took a shovel." << RESET
+void Worker::takeTool(ATool*tool) {
+    tools.push_back(tool);
+    tool->beTaken(this);
+    std::cout   << YELLOW << "Worker " << name << ": Took a tool." << RESET
                 << std::endl;
 }
 
-void Worker::dropShovel() {
-    shovel = NULL;
-    std::cout   << YELLOW << "Worker " << name << ": Dropped shovel." << RESET
-                << std::endl;
+void Worker::dropTool(ATool* tool) {
+    std::vector<ATool *>::iterator it = tools.begin();
+    while (it != tools.end()) {
+        if (*it == tool) {
+            tools.erase(it);
+            tool->getAway();
+            std::cout   << YELLOW << "Worker " << name << ": Dropped tool." << RESET
+                        << std::endl;
+            return ;
+        }
+    }
+}
+
+const std::string& Worker::getName() const {
+    return name;
+}
+
+bool Worker::hasTool(ATool* tool) const {
+    std::vector<ATool *>::const_iterator it = tools.begin();
+    while (it != tools.end()) {
+        if (*it == tool) {
+            std::cout   << YELLOW << "Worker " << name << ": Has tool." << RESET
+                        << std::endl;
+            return true;
+        }
+    }
+    std::cout   << YELLOW << "Worker " << name << ": Doesn't have tool."
+                << RESET << std::endl;
+    return false;
 }

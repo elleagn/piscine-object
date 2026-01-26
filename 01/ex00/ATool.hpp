@@ -14,6 +14,7 @@ class ATool {
         ATool& operator=(const ATool& src);
         virtual ~ATool();
 
+        void beTaken(Worker* worker);
         void getAway();
         virtual void use() = 0;
 };

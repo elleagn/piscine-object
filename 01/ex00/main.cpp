@@ -1,5 +1,7 @@
 #include "Worker.hpp"
 #include "Shovel.hpp"
+#include "Hammer.hpp"
+
 #include <iostream>
 
 int main() {
@@ -13,9 +15,11 @@ int main() {
     {
         Shovel* shov = new Shovel();
         Worker* alice = new Worker("Alice");
-        alice->takeShovel(shov);
+        alice->takeTool(shov);
         delete alice;
         shov->use();
         delete shov;
     }
+    std::cout << std::endl;
+    std::cout << "Inheritance" << std::endl;
 }

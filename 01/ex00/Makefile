@@ -6,14 +6,14 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2026/01/25 13:19:38 by gozon            ###   ########.fr        #
+#    Updated: 2026/01/27 08:26:08 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = work
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
-CPP =	main.cpp Worker.cpp ATool.cpp Shovel.cpp
+CPP =	main.cpp Worker.cpp ATool.cpp Shovel.cpp Hammer.cpp
 OBJ_DIR = objects
 OBJ = $(CPP:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:%.o=%.d)

@@ -22,4 +22,18 @@ int main() {
     }
     std::cout << std::endl;
     std::cout << "Inheritance" << std::endl;
+    {
+        Worker john("John");
+        Worker emily("Emily");
+        ATool *ham = new Hammer();
+        ATool *shov = new Shovel();
+        shov->use();
+        ham->use();
+        john.takeTool(shov);
+        john.takeTool(ham);
+        john.hasTool(ham);
+        emily.takeTool(ham);
+        delete ham;
+        delete shov;
+    }
 }

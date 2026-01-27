@@ -47,6 +47,7 @@ Worker::~Worker() {
     std::vector<ATool *>::iterator it = tools.begin();
     while (it != tools.end()) {
         (*it)->getAway();
+        it++;
     }
     std::cout   << YELLOW << "Worker " << name << ": Destroyed." << RESET
                 << std::endl;
@@ -69,6 +70,7 @@ void Worker::dropTool(ATool* tool) {
                         << std::endl;
             return ;
         }
+        it++;
     }
 }
 
@@ -84,6 +86,7 @@ bool Worker::hasTool(ATool* tool) const {
                         << std::endl;
             return true;
         }
+        it++;
     }
     std::cout   << YELLOW << "Worker " << name << ": Doesn't have tool."
                 << RESET << std::endl;

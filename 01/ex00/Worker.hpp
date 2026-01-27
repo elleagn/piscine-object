@@ -28,6 +28,11 @@ class Worker {
         Statistic stat;
         std::string name;
         std::vector<ATool*> tools;
+        class Key {
+            public:
+                Key(){};
+                ~Key(){};
+        };
         Worker();
 
     public:

@@ -15,6 +15,9 @@ ATool& ATool::operator=(const ATool& src) {
 }
 
 ATool::~ATool() {
+    if (user!= NULL){
+        user->dropTool(this);
+    }
     std::cout << BLUE << "Tool: Destroyed." << RESET << std::endl;
 }
 
@@ -28,7 +31,7 @@ void ATool::beTaken(Worker* worker) {
 }
 
 void ATool::getAway() {
-    if (user) {
+    if (user != NULL) {
         std::cout   << BLUE << "Tool: Got away from " << user->getName()
                     << RESET << std::endl;
     }

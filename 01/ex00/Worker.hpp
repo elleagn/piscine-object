@@ -4,6 +4,7 @@
 #include <vector>
 
 class ATool;
+class Workshop;
 
 struct Position
 {
@@ -28,6 +29,7 @@ class Worker {
         Statistic stat;
         std::string name;
         std::vector<ATool*> tools;
+        std::vector<Workshop *> shops;
         class Key {
             public:
                 Key(){};
@@ -45,9 +47,9 @@ class Worker {
         void dropTool(ATool* tool);
         bool hasTool(ATool* tool) const;
 
-        void setCoordonnee(int x, int y);
-        void setStat(int level, int exp);
-        const Position& getCoordonnee() const;
-        const Statistic& getStatistic();
         const std::string& getName() const;
+        void registerToWorkshops(std::vector<Workshop *> shops);
+        void registerToWorkshops(Workshop* wshops);
+        void leaveWorkshop(Workshop *shop);
+        void work() const;
 };

@@ -2,6 +2,7 @@
 #include "Colors.hpp"
 #include <iostream>
 #include "ATool.hpp"
+#include "Workshop.hpp"
 
 // POSITION
 
@@ -49,6 +50,11 @@ Worker::~Worker() {
         (*it)->getAway();
         it++;
     }
+    std::vector<Workshop *>::iterator shopIt = shops.begin();
+    while (shopIt != shops.end()) {
+        (*shopIt)->releaseWorker(this);
+        shopIt++;
+    }
     std::cout   << YELLOW << "Worker " << name << ": Destroyed." << RESET
                 << std::endl;
 }
@@ -91,4 +97,29 @@ bool Worker::hasTool(ATool* tool) const {
     std::cout   << YELLOW << "Worker " << name << ": Doesn't have tool."
                 << RESET << std::endl;
     return false;
+}
+
+void Worker::registerToWorkshops(std::vector<Workshop *> wshops) {
+    shops.insert(shops.end(), wshops.begin(), wshops.end());
+    std::cout << YELLOW << "Worker " << name << ": Registered to workshops." << RESET << std::endl;
+}
+
+void Worker::registerToWorkshops(Workshop* shop) {
+    shops.push_back(shop);
+    std::cout << YELLOW << "Worker " << name << ": Registered to workshop." << RESET << std::endl;
+}
+
+void Worker::leaveWorkshop(Workshop* shop) {
+    std::vector<Workshop *>::iterator shopIt = shops.begin();
+    while (shopIt != shops.end()) {
+        if (*shopIt == shop) {
+            shops.erase(shopIt);
+        }
+        shopIt++;
+    }
+    std::cout << YELLOW << "Worker " << name << ": Left workshop."<< RESET << std::endl;
+}
+
+void Worker::work() const {
+    std::cout << YELLOW << "Worker " << name << ": Working..." << std::endl;
 }

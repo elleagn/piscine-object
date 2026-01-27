@@ -1,7 +1,7 @@
 #include "Worker.hpp"
 #include "Shovel.hpp"
 #include "Hammer.hpp"
-
+#include "Workshop.hpp"
 #include <iostream>
 
 int main() {
@@ -21,7 +21,7 @@ int main() {
         delete shov;
     }
     std::cout << std::endl;
-    std::cout << "Inheritance" << std::endl;
+    std::cout << "PART 3: Inheritance" << std::endl;
     {
         Worker john("John");
         Worker emily("Emily");
@@ -35,5 +35,20 @@ int main() {
         emily.takeTool(ham);
         delete ham;
         delete shov;
+    }
+
+    std::cout << std::endl;
+    std::cout << "PART 4: Association\n\n";
+    {
+        Workshop shop1;
+        Workshop shop2;
+        Worker  kevin("Kevin");
+
+        shop1.registerWorker(&kevin);
+        shop1.executeWorkDay();
+        shop2.registerWorker(&kevin);
+        shop2.executeWorkDay();
+        shop1.releaseWorker(&kevin);
+        shop1.executeWorkDay();
     }
 }

@@ -1,4 +1,5 @@
 #include "Shovel.hpp"
+#include "Worker.hpp"
 #include <iostream>
 #include "Colors.hpp"
 
@@ -17,6 +18,9 @@ Shovel::Shovel(const Shovel &copy)
 // Destructor
 Shovel::~Shovel()
 {
+	if (user!= NULL){
+        user->dropTool(this);
+    }
 	std::cout << MAGENTA << "Shovel: Destroyed." << RESET << std::endl;
 }
 

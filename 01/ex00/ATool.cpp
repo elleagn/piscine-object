@@ -15,9 +15,6 @@ ATool& ATool::operator=(const ATool& src) {
 }
 
 ATool::~ATool() {
-    if (user!= NULL){
-        user->dropTool(this);
-    }
     std::cout << BLUE << "Tool: Destroyed." << RESET << std::endl;
 }
 

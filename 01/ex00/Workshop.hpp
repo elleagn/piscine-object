@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
 class Worker;
 
@@ -8,9 +9,11 @@ class Worker;
 class Workshop {
     private:
         std::vector<Worker *> worker;
+        std::string type;
+        Workshop();
 
     public:
-        Workshop();
+        Workshop(std::string type);
         Workshop(const Workshop& copy);
         Workshop& operator=(const Workshop& assign);
         ~Workshop();

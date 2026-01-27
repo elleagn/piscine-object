@@ -74,6 +74,11 @@ void Worker::dropTool(ATool* tool) {
             tool->getAway();
             std::cout   << YELLOW << "Worker " << name << ": Dropped tool." << RESET
                         << std::endl;
+            std::vector<Workshop *>::iterator shopIt = shops.begin();
+            while (shopIt != shops.end()) {
+                (*shopIt)->releaseWorker(this);
+                shopIt = shops.begin();
+            }
             return ;
         }
         it++;
@@ -112,14 +117,15 @@ void Worker::registerToWorkshops(Workshop* shop) {
 void Worker::leaveWorkshop(Workshop* shop) {
     std::vector<Workshop *>::iterator shopIt = shops.begin();
     while (shopIt != shops.end()) {
-        if (*shopIt == shop) {
-            shops.erase(shopIt);
+        if ((*shopIt) == shop) {
+            std::cout << YELLOW << "Worker " << name << ": Left workshop."<< RESET << std::endl;
+            shopIt = shops.erase(shopIt);
+            return ;
         }
         shopIt++;
     }
-    std::cout << YELLOW << "Worker " << name << ": Left workshop."<< RESET << std::endl;
 }
 
 void Worker::work() const {
-    std::cout << YELLOW << "Worker " << name << ": Working..." << std::endl;
+    std::cout << YELLOW << "Worker " << name << ": Working..." << RESET << std::endl;
 }

@@ -52,4 +52,16 @@ class Worker {
         void registerToWorkshops(Workshop* wshops);
         void leaveWorkshop(Workshop *shop);
         void work() const;
+
+        template <typename ToolType>
+        ATool* getTool() {
+
+            for (std::vector<ATool *>::iterator it = tools.begin(); it != tools.end(); it++) {
+                if (dynamic_cast<ToolType> (*it) != NULL) {
+                    return (*it);
+                }
+            }
+            return (NULL);
+
+        }
 };

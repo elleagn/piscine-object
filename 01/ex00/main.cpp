@@ -40,15 +40,23 @@ int main() {
     std::cout << std::endl;
     std::cout << "PART 4: Association\n\n";
     {
-        Workshop shop1;
-        Workshop shop2;
+        std::cout << "\nConstructors" << std::endl;
+        Workshop shop1("Hammer");
+        Workshop shop2("Shovel");
         Worker  kevin("Kevin");
+        Shovel shov;
 
+        std::cout << "\nRegister + workday \n";
+        kevin.takeTool(&shov);
         shop1.registerWorker(&kevin);
         shop1.executeWorkDay();
         shop2.registerWorker(&kevin);
         shop2.executeWorkDay();
-        shop1.releaseWorker(&kevin);
-        shop1.executeWorkDay();
+
+        std::cout << "\nDrop tool\n";
+        kevin.dropTool(&shov);
+        shop2.executeWorkDay();
+
+        std::cout << "\nDestructors\n";
     }
 }

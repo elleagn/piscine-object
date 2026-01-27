@@ -1,4 +1,5 @@
 #include "Hammer.hpp"
+#include "Worker.hpp"
 #include <iostream>
 #include "Colors.hpp"
 
@@ -17,6 +18,9 @@ Hammer::Hammer(const Hammer &copy)
 // Destructor
 Hammer::~Hammer()
 {
+	if (user!= NULL){
+        user->dropTool(this);
+    }
 	std::cout << CYAN << "Hammer: Destroyed." << RESET << std::endl;
 }
 

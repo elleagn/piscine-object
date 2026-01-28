@@ -1,4 +1,5 @@
 @startuml Car
+
 class LinkablePart <<abstract>> {
     {abstract} +void execute(float p_pression)
 }
@@ -121,5 +122,30 @@ DAE *-- Electronics
 Pedal *-- Cockpit
 SteerWheel *-- Cockpit
 GearLever *-- Cockpit
+
+Brake *-- BrakeController
+
+Wheel o-- Brake
+
+DAE o-- SteerWheel
+
+Direction o-- DAE
+
+Wheel *-- Direction
+
+LinkablePart o-- Pedal
+
+Injector *-- Motor
+ExplosionChamber *-- Motor
+Crankshaft *-- Motor
+Motor --> Transmission
+
+ExplosionChamber o-- Injector
+
+Crankshaft o-- ExplosionChamber
+
+Transmission o-- Crankshaft
+
+Gear *-- GearLever
 
 @enduml

@@ -109,4 +109,17 @@ BrakeController <|-- LinkablePart
 Injector <|-- LinkablePart
 GearLever <|-- Singleton
 
+BrakeController *-- Car
+Direction *-- Car
+Transmission *-- Car
+Motor *-- Car
+Electronics *-- Car
+Cockpit *-- Car
+
+DAE *-- Electronics
+
+Pedal *-- Cockpit
+SteerWheel *-- Cockpit
+GearLever *-- Cockpit
+
 @enduml

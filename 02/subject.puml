@@ -3,6 +3,8 @@
 class LinkablePart <<abstract>> {
     {abstract} +void execute(float p_pression)
 }
+LinkablePart --|> BrakeController
+LinkablePart --|> Injector
 
 class Wheel {
     +void executeRotation(float p_force)
@@ -18,10 +20,12 @@ class GearLever {
     +void change(void)
     +Gear* activeGear()
 }
+GearLever --* Gear
 
 class Singleton< GearLever > {
 
 }
+Singleton --|> GearLever
 
 class Transmission {
     -vector<Wheel *> wheels
@@ -32,16 +36,21 @@ class Crankshaft {
     -Transmission* trans
     +void receiveForce(float p_volume);
 }
+Crankshaft --o Transmission
+
 
 class ExplosionChamber {
     -Crankshaft* crank
     +void fill(float p_volume)
 }
+ExplosionChamber --o Crankshaft
 
 class Injector {
     -ExplosionChamber* chamber
     +void execute(float p_pression)
 }
+Injector --o ExplosionChamber
+
 
 class Motor {
     -Injector inj
@@ -49,40 +58,57 @@ class Motor {
     -Crankshaft shaft
     +void connectToTransmission(Transmission p_transmission)
 }
+Motor --* Injector
+Motor --* ExplosionChamber
+Motor --* Crankshaft
+Motor -> Transmission
+
 
 class Pedal {
     -LinkablePart* part
     +void setTarget(LinkablePart* p_part)
     +void use(float p_pression)
 }
+Pedal --o LinkablePart
+
 
 class Direction {
-    -Wheel* wheels[]
+    -Wheel wheels[]
     +void turn(float p_angle)
 }
+Direction --* Wheel
+
 
 class DAE {
     -Direction* dir
     -float force
     +void use(float p_angle)
 }
+DAE --o Direction
+
 
 class SteerWheel {
     -DAE* dae
     -float force
     +void turn(float p_angle)
 }
+SteerWheel --o DAE
+
 
 class Brake {
     -Wheel* wheel
     +void execute(float p_force)
     +void attackWheel(Wheel* p_wheel)
 }
+Brake --o Wheel
+
 
 class BrakeController {
     -Brake brakes[]
     +void execute(float p_pression)
 }
+BrakeController --* Brake
+
 
 class Cockpit {
     -Pedal pedal
@@ -92,10 +118,16 @@ class Cockpit {
     +void steer(float p_angle)
     +void changeGear(void)
 }
+Cockpit --* Pedal
+Cockpit --* SteerWheel
+Cockpit --* GearLever
+
 
 class Electronics {
     -DAE dae
 }
+Electronics --* DAE
+
 
 class Car {
     -BrakeController brakes
@@ -105,47 +137,14 @@ class Car {
     -Electronics elec
     -Cockpit pit
 }
+Car --* BrakeController
+Car --* Direction
+Car --* Transmission
+Car --* Motor
+Car --* Electronics
+Car --* Cockpit
 
-BrakeController <|-- LinkablePart
-Injector <|-- LinkablePart
-GearLever <|-- Singleton
 
-BrakeController *-- Car
-Direction *-- Car
-Transmission *-- Car
-Motor *-- Car
-Electronics *-- Car
-Cockpit *-- Car
 
-DAE *-- Electronics
-
-Pedal *-- Cockpit
-SteerWheel *-- Cockpit
-GearLever *-- Cockpit
-
-Brake *-- BrakeController
-
-Wheel o-- Brake
-
-DAE o-- SteerWheel
-
-Direction o-- DAE
-
-Wheel *-- Direction
-
-LinkablePart o-- Pedal
-
-Injector *-- Motor
-ExplosionChamber *-- Motor
-Crankshaft *-- Motor
-Motor --> Transmission
-
-ExplosionChamber o-- Injector
-
-Crankshaft o-- ExplosionChamber
-
-Transmission o-- Crankshaft
-
-Gear *-- GearLever
 
 @enduml

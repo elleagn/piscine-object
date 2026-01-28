@@ -1,0 +1,35 @@
+@startuml Car
+class LinkablePart <<abstract>> {
+    {abstract} +void execute(float p_pression)
+}
+
+class Wheel {
+    +void executeRotation(float p_force)
+}
+
+class Gear {
+    -int demultiplier
+}
+
+class GearLever {
+    -level
+    - Gear gears[]
+    +Gear* activeGear()
+}
+
+class Singleton< GearLever > {
+
+}
+
+class Transmission {
+    -vector<Wheel *> wheels
+    +void activate(float p_force)
+}
+
+class Crankshaft {
+    -Transmission Transmission
+    +void receiveForce(float p_volume);
+}
+
+GearLever <|-- Singleton
+@enduml

@@ -14,6 +14,7 @@ class Gear {
 class GearLever {
     -level
     - Gear gears[]
+    +void change(void)
     +Gear* activeGear()
 }
 
@@ -27,9 +28,85 @@ class Transmission {
 }
 
 class Crankshaft {
-    -Transmission Transmission
+    -Transmission* trans
     +void receiveForce(float p_volume);
 }
 
+class ExplosionChamber {
+    -Crankshaft* crank
+    +void fill(float p_volume)
+}
+
+class Injector {
+    -ExplosionChamber* chamber
+    +void execute(float p_pression)
+}
+
+class Motor {
+    -Injector inj
+    -ExplosionChamber chamber
+    -Crankshaft shaft
+    +void connectToTransmission(Transmission p_transmission)
+}
+
+class Pedal {
+    -LinkablePart* part
+    +void setTarget(LinkablePart* p_part)
+    +void use(float p_pression)
+}
+
+class Direction {
+    -Wheel* wheels[]
+    +void turn(float p_angle)
+}
+
+class DAE {
+    -Direction* dir
+    -float force
+    +void use(float p_angle)
+}
+
+class SteerWheel {
+    -DAE* dae
+    -float force
+    +void turn(float p_angle)
+}
+
+class Brake {
+    -Wheel* wheel
+    +void execute(float p_force)
+    +void attackWheel(Wheel* p_wheel)
+}
+
+class BrakeController {
+    -Brake brakes[]
+    +void execute(float p_pression)
+}
+
+class Cockpit {
+    -Pedal pedal
+    -SteerWheel steer
+    -GearLever lever
+    +void pressPedal(float p_pression)
+    +void steer(float p_angle)
+    +void changeGear(void)
+}
+
+class Electronics {
+    -DAE dae
+}
+
+class Car {
+    -BrakeController brakes
+    -Direction dir
+    -Transmission trans
+    -Motor motor
+    -Electronics elec
+    -Cockpit pit
+}
+
+BrakeController <|-- LinkablePart
+Injector <|-- LinkablePart
 GearLever <|-- Singleton
+
 @enduml

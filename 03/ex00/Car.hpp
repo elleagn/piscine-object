@@ -15,6 +15,7 @@ class Car {
 
         int speed;
         int wheelsAngle;
+        bool on;
 
     public:
         Car();

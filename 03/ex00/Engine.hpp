@@ -2,9 +2,6 @@
 
 class Engine {
 
-    private:
-        bool on;
-
     public:
         Engine();
         Engine(const Engine& copy);

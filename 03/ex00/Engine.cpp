@@ -1,35 +1,25 @@
 #include "Engine.hpp"
 #include <iostream>
 
-Engine::Engine(): on(false) {}
+Engine::Engine() {}
 
-Engine::Engine(const Engine& copy): on(copy.on) {
+Engine::Engine(const Engine& copy) {
     (void)copy;
 }
 
 Engine::~Engine() {}
 
 Engine& Engine::operator=(const Engine& assign) {
-    on = assign.on;
+    (void)assign;
     return (*this);
 }
 
 void Engine::start() {
-    if (on == true) {
-        std::cout << "Engine: Engine is already on." << std::endl;
-    } else {
-        on = true;
-        std::cout << "Engine: Engine started." << std::endl;
-    }
+    std::cout << "Engine: Engine started." << std::endl;
 }
 
 void Engine::stop() {
-    if (on == false) {
-        std::cout << "Engine: Engine is already off." << std::endl;
-    } else {
-        on = false;
-        std::cout << "Engine: Engine stopped." << std::endl;
-    }
+    std::cout << "Engine: Engine stopped." << std::endl;
 }
 
 void Engine::accelerate(int speed) {

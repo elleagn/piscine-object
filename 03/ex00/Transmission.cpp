@@ -14,23 +14,23 @@ Transmission& Transmission::operator=(const Transmission& assign) {
     return (*this);
 }
 
-void Transmission::shift_gears_down() {
+void Transmission::shift_gears_up() {
     if (currentGear == 6) {
         std::cout << "Transmission: already at max gear" << std::endl;
     } else {
         currentGear++;
-        std::cout << "Transmission: Gear shifted up to" << currentGear << std::endl;
+        std::cout << "Transmission: Gear shifted up to " << currentGear << std::endl;
     }
 }
 
-void Transmission::shift_gears_up() {
+void Transmission::shift_gears_down() {
     if (currentGear == -1) {
         std::cout << "Transmission: Already in reverse gear." << std::endl;
     } else if (currentGear == 0) {
         std::cout << "Transmission: already in neutral gear" << std::endl;
     } else {
         currentGear--;
-        std::cout << "Transmission: Gear shifted down to" << currentGear << std::endl;
+        std::cout << "Transmission: Gear shifted down to " << currentGear << std::endl;
     }
 }
 

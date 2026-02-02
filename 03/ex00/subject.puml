@@ -9,7 +9,6 @@ class Transmission {
 
 
 class Engine {
-    -bool on
     +void start()
     +void stop()
     +void accelerate(int speed)
@@ -37,6 +36,7 @@ class Car {
     -Engine engine
     -int speed
     -int wheelsAngle
+    -bool on
 
     +void start()
     +void stop()

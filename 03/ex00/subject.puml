@@ -1,0 +1,60 @@
+@startuml Car
+
+class Transmission {
+    -int currentGear
+    +shift_gears_up()
+    +shift_gears_down()
+    +reverse()
+}
+
+
+class Engine {
+    -bool on
+    +start()
+    +stop()
+    +accelerate(int speed)
+}
+
+
+
+
+class SteerWheel {
+    +void turn(float p_angle)
+}
+
+
+
+class Brake {
+    +void execute(float p_force)
+}
+
+
+
+class Car {
+    -Brake brakes
+    -SteerWheel steerwheel
+    -Transmission transmission
+    -Engine engine
+    -int speed
+    -int wheelsAngle
+
+    +start()
+    +stop()
+    +accelerate(int speed)
+    +shift_gears_up()
+    +shift_gears_down()
+    +reverse()
+    +turn_wheel(angle)
+    +straighten_wheels()
+    +apply_force_on_brakes(int force)
+    +apply_emergency_brakes()
+}
+
+' RELATIONSHIPS
+
+Car *-- Brake
+Car *-- SteerWheel
+Car *-- Transmission
+Car *-- Engine
+
+@enduml

@@ -2,17 +2,17 @@
 
 class Transmission {
     -int currentGear
-    +shift_gears_up()
-    +shift_gears_down()
-    +reverse()
+    +void shift_gears_up()
+    +void shift_gears_down()
+    +void reverse()
 }
 
 
 class Engine {
     -bool on
-    +start()
-    +stop()
-    +accelerate(int speed)
+    +void start()
+    +void stop()
+    +void accelerate(int speed)
 }
 
 
@@ -25,7 +25,7 @@ class SteerWheel {
 
 
 class Brake {
-    +void execute(float p_force)
+    +void decelerate(int speed)
 }
 
 
@@ -38,16 +38,16 @@ class Car {
     -int speed
     -int wheelsAngle
 
-    +start()
-    +stop()
-    +accelerate(int speed)
-    +shift_gears_up()
-    +shift_gears_down()
-    +reverse()
-    +turn_wheel(angle)
-    +straighten_wheels()
-    +apply_force_on_brakes(int force)
-    +apply_emergency_brakes()
+    +void start()
+    +void stop()
+    +void accelerate(int speed)
+    +void shift_gears_up()
+    +void shift_gears_down()
+    +void reverse()
+    +void turn_wheel(float angle)
+    +void straighten_wheels()
+    +void apply_force_on_brakes(int force)
+    +void apply_emergency_brakes()
 }
 
 ' RELATIONSHIPS

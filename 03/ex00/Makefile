@@ -6,14 +6,14 @@
 #    By: gozon <gozon@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/18 11:02:35 by gozon             #+#    #+#              #
-#    Updated: 2026/02/02 08:31:45 by gozon            ###   ########.fr        #
+#    Updated: 2026/02/02 08:49:40 by gozon            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = car
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
-CPP =	main.cpp Worker.cpp ATool.cpp Shovel.cpp Hammer.cpp Workshop.cpp
+CPP =	main.cpp SteerWheel.cpp Transmission.cpp Car.cpp Engine.cpp Brake.cpp
 OBJ_DIR = objects
 OBJ = $(CPP:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:%.o=%.d)

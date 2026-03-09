@@ -10,10 +10,10 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = car
+NAME = price
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
-CPP =	main.cpp SteerWheel.cpp Transmission.cpp Car.cpp Engine.cpp Brake.cpp
+CPP =	main.cpp Command.cpp
 OBJ_DIR = objects
 OBJ = $(CPP:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:%.o=%.d)

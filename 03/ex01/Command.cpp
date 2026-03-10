@@ -87,6 +87,18 @@ Command& Command::operator=(const Command& assign) {
     return (*this);
 }
 
+int Command::getId() const {
+    return id;
+}
+
+std::string Command::getClient() const {
+    return (client);
+}
+
+std::string Command::getDate() const {
+    return (date);
+}
+
 void Command::add_article(std::string article, int quantity) {
     
     if (prices.find(article) == prices.end()) {
@@ -104,4 +116,12 @@ int Command::get_total_price() const {
         total += it->second * prices[it->first];
     }
     return (total);
+}
+
+
+std::ostream& operator<<(std::ostream& out, const Command& cmd) {
+    out << cmd.getDate() << " - Command " << cmd.getId()  << " filled by " 
+        << cmd.getClient();
+    
+    return (out);
 }

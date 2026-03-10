@@ -24,8 +24,13 @@ class Command {
         static std::map<std::string, int> prices;
 
         Command& operator=(const Command& assign);
+        int getId() const;
+        std::string getDate() const;
+        std::string getClient() const;
 
         void        add_article(std::string article, int quantity);
         virtual int get_total_price() const;
 
 };
+
+std::ostream& operator<<(std::ostream& out, const Command& cmd);

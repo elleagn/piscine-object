@@ -13,7 +13,7 @@
 NAME = price
 CC = clang++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
-CPP =	main.cpp Command.cpp
+CPP =	main.cpp Command.cpp PackageReductionDiscount.cpp ThursdayDiscount.cpp
 OBJ_DIR = objects
 OBJ = $(CPP:%.cpp=$(OBJ_DIR)/%.o)
 DEP = $(OBJ:%.o=%.d)
